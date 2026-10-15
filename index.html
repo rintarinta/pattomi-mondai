@@ -706,7 +706,7 @@ async function reveal(q,ans,t){
     score++;SFX.fanfare();confetti();
     tel.insertAdjacentHTML('beforeend','<div class="t-odore">踊れ！</div>');
     stage.classList.add('odore');
-    r.innerHTML='<span class="ok">大正解！</span><br>全巻もつられて踊っています';
+    r.innerHTML='<span class="ok">大正解！</span><br>本棚もつられて踊っています';
   }else if(ans===null){
     SFX.buzz();
     r.innerHTML=`<span class="ng">時間切れ！</span><br>正解は${q.vols}巻でした`;
