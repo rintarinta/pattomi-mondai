@@ -661,6 +661,126 @@
       "checkedAt": "2026-10-15",
       "lines": "君に/届け",
       "color": "#e88aa8"
+    },
+    {
+      "id": "q54",
+      "title": "ヒカルの碁",
+      "vols": 23,
+      "edition": "ジャンプ・コミックス",
+      "sourceName": "コミックシーモア",
+      "sourceUrl": "https://www.cmoa.jp/title/60431/",
+      "checkedAt": "2026-10-15",
+      "lines": "ヒカルの/碁",
+      "color": "#2b2b2b"
+    },
+    {
+      "id": "q55",
+      "title": "アイシールド21",
+      "vols": 37,
+      "edition": "ジャンプ・コミックス",
+      "note": "2024年の21周年記念スペシャルブックは数えない",
+      "sourceName": "ブックオフオンライン",
+      "sourceUrl": "https://shopping.bookoff.co.jp/s/8800000772",
+      "noteSourceName": "電撃オンライン",
+      "noteSourceUrl": "https://dengekionline.com/article/202406/6971",
+      "checkedAt": "2026-10-15",
+      "lines": "アイシールド/21",
+      "color": "#2e7d4f"
+    },
+    {
+      "id": "q56",
+      "title": "ニセコイ",
+      "vols": 25,
+      "edition": "ジャンプ・コミックス",
+      "sourceName": "コミックシーモア",
+      "sourceUrl": "https://www.cmoa.jp/title/55861/",
+      "checkedAt": "2026-10-15",
+      "color": "#e05a7a"
+    },
+    {
+      "id": "q57",
+      "title": "斉木楠雄のΨ難",
+      "vols": 26,
+      "edition": "ジャンプ・コミックス",
+      "sourceName": "アニメ！アニメ！",
+      "sourceUrl": "https://animeanime.jp/release/prtimes/20260427/284596.html",
+      "checkedAt": "2026-10-15",
+      "lines": "斉木楠雄の/Ψ難",
+      "color": "#d96bb3"
+    },
+    {
+      "id": "q58",
+      "title": "食戟のソーマ",
+      "vols": 36,
+      "edition": "ジャンプ・コミックス",
+      "note": "後日談『Le dessert』やスピンオフは数えない",
+      "sourceName": "BOOK☆WALKER",
+      "sourceUrl": "https://bookwalker.jp/de886e064b-0ce8-4138-a67c-65b7175e1628/",
+      "noteSourceName": "映画.com",
+      "noteSourceUrl": "https://eiga.com/news/20190624/2/",
+      "checkedAt": "2026-10-15",
+      "lines": "食戟の/ソーマ",
+      "color": "#c8622f"
+    },
+    {
+      "id": "q59",
+      "title": "銀の匙 Silver Spoon",
+      "vols": 15,
+      "edition": "少年サンデーコミックス",
+      "sourceName": "ファミ通.com",
+      "sourceUrl": "https://www.famitsu.com/article/202604/71152",
+      "checkedAt": "2026-10-15",
+      "lines": "銀の匙",
+      "color": "#7a8a99"
+    },
+    {
+      "id": "q60",
+      "title": "花より男子",
+      "vols": 37,
+      "edition": "マーガレットコミックス",
+      "note": "完全版は数えない",
+      "sourceName": "ブックオフオンライン",
+      "sourceUrl": "https://shopping.bookoff.co.jp/s/8800000146",
+      "noteSourceName": "ブクログ",
+      "noteSourceUrl": "https://booklog.jp/item/1/4088551133",
+      "checkedAt": "2026-10-15",
+      "lines": "花より/男子",
+      "color": "#d95b8a"
+    },
+    {
+      "id": "q61",
+      "title": "ハチミツとクローバー",
+      "vols": 10,
+      "edition": "クイーンズコミックス",
+      "sourceName": "ファミ通.com",
+      "sourceUrl": "https://www.famitsu.com/article/202508/50478",
+      "checkedAt": "2026-10-15",
+      "lines": "ハチミツと/クローバー",
+      "color": "#e0a12b"
+    },
+    {
+      "id": "q62",
+      "title": "BEASTARS",
+      "vols": 22,
+      "edition": "少年チャンピオン・コミックス",
+      "sourceName": "電ファミニコゲーマー",
+      "sourceUrl": "https://news.denfaminicogamer.jp/news/2608063i",
+      "checkedAt": "2026-10-15",
+      "color": "#3a5a8a"
+    },
+    {
+      "id": "q63",
+      "title": "賭博黙示録カイジ",
+      "vols": 13,
+      "edition": "ヤングマガジンKC",
+      "note": "続編『賭博破戒録カイジ』などは数えない",
+      "sourceName": "現代ビジネス",
+      "sourceUrl": "https://gendai.media/articles/-/112195",
+      "noteSourceName": "ASCII.jp",
+      "noteSourceUrl": "https://ascii.jp/elem/000/004/238/4238876/",
+      "checkedAt": "2026-10-15",
+      "lines": "賭博黙示録/カイジ",
+      "color": "#3a3a3a"
     }
   ]
 }
