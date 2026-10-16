@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>パッと見問題 ～この漫画全何巻？～</title>
 <meta name="description" content="漫画の表紙を見て、5秒で全何巻かを当てるクイズ。">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="パッと見問題 ～この漫画全何巻？～"><meta property="og:description" content="漫画の表紙を見て、5秒で全何巻かを当てるクイズ。10問で何巻ずれたかを競います。"><meta property="og:type" content="website"><meta property="og:url" content="https://rintarinta.github.io/pattomi-mondai/"><meta property="og:image" content="https://rintarinta.github.io/pattomi-mondai/og.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+Rounded+1c:wght@500;800&display=swap" rel="stylesheet">
@@ -179,7 +179,7 @@ input.ansnum:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent)
 .endscore{font-family:"Dela Gothic One",sans-serif;font-size:clamp(60px,18vw,110px);line-height:1}
 .endscore small{font-size:22px;margin-left:6px}
 .t-rank{font-size:clamp(26px,7vw,40px)}
-#s-end .btns{width:100%;max-width:420px}
+#s-end .btns{width:100%;max-width:420px}.endsub{font-size:18px;font-weight:800;margin:4px 0 2px}a.btn{display:flex;align-items:center;justify-content:center;text-decoration:none}.btn.xpost{background:var(--ink);color:#fff}
 
 /* 問題を作る */
 .h2{font-family:"Dela Gothic One",sans-serif;font-size:28px;margin:6px 0 0;font-weight:400}
@@ -412,11 +412,11 @@ input,select,textarea{font-size:max(16px,1em)}
 
   <section id="s-end" class="screen">
     <div class="telop t-mid pop">結果発表</div>
-    <div class="endscore"><span id="endScore"></span><small>問正解</small></div>
+    <div class="endscore"><span id="endScore"></span><small>巻ずれ</small></div><div id="endSub" class="endsub"></div>
     <div id="endRank" class="telop t-rank"></div>
     <div class="btns">
       <button id="againBtn" class="btn big" type="button">もう一回</button>
-      <button id="toTitleBtn" class="btn ghost" type="button">タイトルへ</button>
+      <a id="shareBtn" class="btn xpost" href="#" target="_blank" rel="noopener">Xで結果をポスト</a><button id="toTitleBtn" class="btn ghost" type="button">タイトルへ</button>
     </div>
   </section>
 
@@ -567,7 +567,7 @@ function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.to
 function renderSound(){$('#snd').textContent=settings.sound?'音：ON':'音：OFF'}
 
 /* ---------- ゲーム進行 ---------- */
-let run=0,pool=[],qi=0,score=0,input='',accepting=false,submitFn=null;
+let run=0,pool=[],qi=0,score=0,zure=0,input='',accepting=false,submitFn=null;
 const alive=t=>t===run;
 const stage=$('#stage'),img=$('#qimg'),tel=$('#tel'),ansEl=$('#ans');
 const fine=!!(window.matchMedia&&matchMedia('(pointer: fine)').matches);
@@ -626,7 +626,7 @@ async function ask(q,t){
   stage.classList.remove('odore');setTelop('',false);
   $('#phaseQ').hidden=false;$('#phaseR').hidden=true;
   $('#qno').textContent=`第${qi+1}問 / 全${pool.length}問`;
-  $('#sc').textContent=`正解 ${score}`;
+  $('#sc').textContent=`ずれ合計 ${zure}巻`;
   setInput('');accepting=true;ansEl.readOnly=false;
   if(fine)$('#s-game').focus({preventScroll:true});
   const timer=$('#timer'),bar=$('#bar'),cd=$('#cd');
@@ -702,21 +702,21 @@ async function reveal(q,ans,t){
   img.className='fit-contain';img.alt='全巻そろった様子';img.src=shelfSrc(q);
   await sleep(900);if(!alive(t))return;
   const r=$('#result');
-  if(ans===q.vols){
+  zure+=ans===null?q.vols:Math.abs(ans-q.vols);if(ans===q.vols){
     score++;SFX.fanfare();confetti();
     tel.insertAdjacentHTML('beforeend','<div class="t-odore">踊れ！</div>');
     stage.classList.add('odore');
-    r.innerHTML='<span class="ok">大正解！</span><br>本棚もつられて踊っています';
+    r.innerHTML='<span class="ok">大正解！ ずれ0巻</span><br>本棚もつられて踊っています';
   }else if(ans===null){
     SFX.buzz();
-    r.innerHTML=`<span class="ng">時間切れ！</span><br>正解は${q.vols}巻でした`;
+    r.innerHTML=`<span class="ng">時間切れ！ ${q.vols}巻ずれ</span><br>正解は${q.vols}巻でした（答えなしは0巻扱い）`;
   }else{
     const diff=Math.abs(ans-q.vols);
-    if(diff===1){SFX.close();r.innerHTML=`<span class="ng">おしい！ あと1巻！</span><br>あなたの答えは${ans}巻でした`}
-    else{SFX.buzz();r.innerHTML=`<span class="ng">${ans>q.vols?'盛りすぎ！':'見くびりすぎ！'}</span><br>${ans}巻と答えて、実際は${q.vols}巻（${diff}巻ちがい）`}
+    if(diff===1){SFX.close();r.innerHTML=`<span class="ng">おしい！ 1巻ずれ</span><br>あなたの答えは${ans}巻でした`}
+    else{SFX.buzz();r.innerHTML=`<span class="ng">${ans>q.vols?'盛りすぎ！':'見くびりすぎ！'}</span><br>${ans}巻と答えて、実際は${q.vols}巻（${diff}巻ずれ）`}
   }
   renderSource(q);
-  $('#sc').textContent=`正解 ${score}`;
+  $('#sc').textContent=`ずれ合計 ${zure}巻`;
   $('#nextBtn').textContent=qi+1>=pool.length?'結果発表へ':'次の問題';
   $('#phaseQ').hidden=true;$('#phaseR').hidden=false;
   $('#nextBtn').focus({preventScroll:true});
@@ -732,14 +732,14 @@ async function playOne(t){
 function startGame(){
   ensureAudio();
   if(!questions.length){updateCounts();return}
-  const t=++run;pool=shuffle(questions).slice(0,10);qi=0;score=0;
+  const t=++run;pool=shuffle(questions).slice(0,10);qi=0;score=0;zure=0;
   playOne(t);
 }
 function showEnd(){
   show('s-end');
-  $('#endScore').textContent=`${score} / ${pool.length}`;
+  $('#endScore').textContent=`${zure}`;$('#endSub').textContent=`${pool.length}問の合計・ピタリ${score}問`;
   const rate=score/pool.length;
-  $('#endRank').textContent=rate===1?'パッと見マスター':rate>=.6?'なかなかの目利き':score>0?'ときどき踊れる人':'漫画は見かけによらない';
+  $('#endRank').textContent=zure===0?'パッと見マスター':zure<=20?'なかなかの目利き':zure<=60?'だいたい合ってる人':'漫画は見かけによらない';const rank=$('#endRank').textContent;$('#shareBtn').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(`パッと見問題 ～この漫画全何巻？～\n10問で合計${zure}巻ずれ（ピタリ${score}問）\n「${rank}」でした\n`)+'&url='+encodeURIComponent(location.origin+location.pathname)+'&hashtags='+encodeURIComponent('パッと見問題');
   if(rate===1){SFX.fanfare();confetti()}
 }
 function quit(){run++;accepting=false;submitFn=null;stage.classList.remove('odore');updateCounts();show('s-title')}
